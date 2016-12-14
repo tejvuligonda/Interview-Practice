@@ -26,13 +26,36 @@ import sys
 #a,b,c,d,e = raw_input().strip().split(' ')
 #a,b,c,d,e = [int(a),int(b),int(c),int(d),int(e)]
 
-def minimaxsum(a,b,c,d,e):
+def minimaxsum_nlogn(a,b,c,d,e):
     sorted_nums = sorted([a,b,c,d,e]) # O(n logn)
-    min = sorted_nums[0] + sorted_nums[1] + sorted_nums[2] + sorted_nums[3]
-    max = sorted_nums[1] + sorted_nums[2] + sorted_nums[3] + sorted_nums[4]
-    result = str(min) + " " + str(max)
+    min_sum = sorted_nums[0] + sorted_nums[1] + sorted_nums[2] + sorted_nums[3]
+    max_sum = sorted_nums[1] + sorted_nums[2] + sorted_nums[3] + sorted_nums[4]
+    result = str(min_sum) + " " + str(max_sum)
     print(result)
-    
-minimaxsum(1,2,3,4,5)
    
+def minimaxsum(a,b,c,d,e):
+    nums        = [a,b,c,d,e]
+    smallindex  = 0
+    bigindex    = 0
+    min_sum     = 0
+    max_sum     = 0
+    for i in range(0,5): # iterates from 0 to 4 inclusive
+        if (nums[i]) < nums[smallindex]:
+            smallindex = i
+        if (nums[i]) > nums[bigindex]:
+            bigindex = i
+    for j in range(0,5):
+        if j != bigindex:
+            min_sum += nums[j]
+        if j != smallindex:
+            max_sum += nums[j]
+    result = str(min_sum) + " " + str(max_sum)
+    print(result)
+    return result
+
+
+if __name__ == "__main__":
+    minimaxsum(1,2,3,4,5) # 10 14
+    minimaxsum(10,10,10,10,9) # 39 40
+ 
 
