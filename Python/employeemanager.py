@@ -42,12 +42,10 @@ def takeInput(companyStructure):
     people.append(root)
     structure[root] = 0
     for k in companyStructure.keys():
-        for e in companyStructure[k]:
-            if root == k:
-                people.append(companyStructure[k])
-            else:
-                #find the index of k and append e after that index
-                people.insert(people.index(k)+1,e)
+        for i in range(len(companyStructure[k])-1,-1,-1): # iterate backwards
+            #find the index of k and append e after that index
+            e = companyStructure[k][i]
+            people.insert(people.index(k)+1,e)
             structure[e] = structure[k] + 1
     printAllEmployees(people,structure) 
 
