@@ -6,3 +6,4 @@
 - What data types are used?
 - Can I use any built-in functions?
 - What does the data represent?
+- How is the input given, in what format would you like the output?
